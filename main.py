@@ -8,7 +8,7 @@ st.title('💸 SWD Pay Analysis')
 
 @st.dialog("Login to SWD")
 def login():
-    userid = st.text_input("User ID")
+    userid = st.text_input("User ID", placeholder="f2023xxxx")
     password = st.text_input("Password", type="password")
 
     if st.button("Submit"):
