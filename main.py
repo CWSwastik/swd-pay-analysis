@@ -64,6 +64,7 @@ if sem != 'All Semesters':
 total_amount_spent = dataframe['total_amount'].sum()
 avg_amount_spent_per_transaction = dataframe.groupby('time')['total_amount'].sum().mean()
 # most_visited_vendor = dataframe['g_name'].mode().values[0]
+dataframe['time'] = pd.to_numeric(dataframe['time'])
 dataframe['day_of_week'] = pd.to_datetime(dataframe['time'], unit='s', origin='unix').dt.day_name()
 most_active_day = dataframe.groupby('day_of_week')['total_amount'].sum().idxmax()
 
