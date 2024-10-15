@@ -41,7 +41,7 @@ with st.expander("Show Full Data"):
 
 sem = st.selectbox("Select Semester", (dataframe['sem'].unique().tolist())[::-1] + ['All Semesters'])
 
-if sem != 'All':
+if sem != 'All Semesters':
     dataframe = dataframe[dataframe['sem'] == sem]
 
 st.subheader('Data Analysis')
@@ -76,3 +76,5 @@ line_data['time'] =  pd.to_datetime(line_data['time'], unit="s", origin='unix')
 line_data = line_data.sort_values(by='time')
 
 st.line_chart(line_data.set_index('time'))
+with st.expander("Show More"):
+    st.write(line_data)
