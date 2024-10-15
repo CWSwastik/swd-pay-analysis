@@ -6,7 +6,7 @@ import plotly.express as px
 
 st.title('💸 SWD Pay Analysis')
 
-@st.dialog("Login to SWD")
+@st.dialog("Login with SWD")
 def login():
     userid = st.text_input("User ID", placeholder="f2023xxxx")
     password = st.text_input("Password", type="password")
@@ -18,6 +18,7 @@ def login():
         if result_json['err']:
             st.write(result_json['msg'])
             st.stop()
+        st.session_state.name = result_json['data']['name']
         st.session_state.token = result.headers['Authorization']
         st.rerun()
 
@@ -41,7 +42,7 @@ dataframe = pd.DataFrame(data["data"])
 with st.expander("Show All Transaction Data"):
     st.write(dataframe)
 
-st.subheader('Data Analysis')
+st.subheader(f'Hi {st.session_state.name.split()[0].title()} 👋, here are some insights on your SWD Pay spendings:')
 # st.write(dataframe.describe())
 
 total_amount_spent = dataframe['total_amount'].sum()
