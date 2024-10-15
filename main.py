@@ -24,8 +24,12 @@ def login():
 
 
 if 'token' not in st.session_state:
-    login()
-    st.stop()
+    login_button = st.button("Login with SWD")
+    if not login_button:
+        st.stop()
+    else:
+        login()
+        st.stop()
 else:
     data = requests.get("https://swd.bits-hyderabad.ac.in/api/deductions", headers={"Authorization": st.session_state.token}).json() 
     if data['err']:
